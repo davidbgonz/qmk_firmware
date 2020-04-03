@@ -131,9 +131,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Del  |  F5  |  F6  |  F7  |  F8  |      |      |   -  |   =  |   [  |   ]  |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Trns |  F9  |  F10 |  F11 |  F12 |      |      |ISO # |ISO / | Pg Up| Pg Dn| Trns |
+ * | Trns |  F9  |  F10 |  F11 |  F12 |      |      |ISO # |ISO / |Pg Up |Pg Dn | Trns |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Trns | Trns | Trns | Trns | Trns |     Trns    | Trns | Play | Vol- | Vol+ | Next |
+ * | Trns | Trns | Trns | Trns | Trns |     Trns    | Trns |MseLf |MseDn |MseUp |MseRt |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_preonic_grid( \
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_F1,      KC_F2,      KC_F3,      KC_F4,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_DEL,  \
   KC_DEL,  KC_F5,      KC_F6,      KC_F7,      KC_F8,      XXXXXXX,    XXXXXXX,    KC_MINS,    KC_EQL,     KC_LBRC,    KC_RBRC,    KC_BSLS, \
   _______, KC_F9,      KC_F10,     KC_F11,     KC_F12,     XXXXXXX,    XXXXXXX,    KC_NUHS,    KC_NUBS,    KC_PGUP,    KC_PGDN,    _______, \
-  _______, _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_MPLY,    KC_VOLD,    KC_VOLU,    KC_MNXT  \
+  _______, _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_WH_L,    KC_WH_D,    KC_WH_U,    KC_WH_R  \
 ),
 
 /* Function
@@ -152,9 +152,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      |  4   |  5   |  6   |  +   |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |  1   |  2   |  3   |  =   |      | Enter|
+ * |      |      |      |      |      |      |  1   |  2   |  3   |  =   |      |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Trns |      |      |      |      |      0      |  .   | Home | Pg Dn| Pg Up| End  |
+ * | Trns |      |      |      |      |      0      |  .   | Home |Pg Dn |Pg Up | End  |
  * `-----------------------------------------------------------------------------------'
  */
 [_FUNCTION] = LAYOUT_preonic_grid( \
@@ -169,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset| Debug|      |      |      |      |Trm On|Trm Of|      |      |      |
+ * |      |Reset |Debug |      |      |      |      |Trm On|Trm Of|      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |Aud on|AudOff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
