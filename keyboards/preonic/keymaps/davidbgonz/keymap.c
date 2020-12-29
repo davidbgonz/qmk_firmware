@@ -236,7 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //          break;
         case COLEMAK_DH:
             if (record->event.pressed) {
-                set_single_persistant_default_layer(_COLEMAK_DH);
+                set_single_persistent_default_layer(_COLEMAK_DH);
             }
             return false;
             break;
