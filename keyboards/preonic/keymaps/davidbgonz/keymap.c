@@ -268,7 +268,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case ESC_COLON: // outut escape key then ":" for vim
+        case ESC_COLON: // output escape key then ":" for vim
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_ESC) ":");
             }
