@@ -42,7 +42,8 @@ enum preonic_keycodes {
   LOWER,
   RAISE,
   FUNCTION,
-  ESC_COLON
+  ESC_COLON,
+  NEW_TAB
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -103,11 +104,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC, \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH,    KC_DLR,     KC_PERC,       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,  \
-  _______, KC_WH_U, KC_BTN3, KC_BTN2,    KC_BTN1,    C(S(KC_BTN1)), KC_DQUO, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE, \
-  _______, KC_WH_D, KC_ENT,  C(S(KC_C)), C(S(KC_V)), KC_DEL,        KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
-  _______, _______, _______, _______,    _______,    _______,       _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT  \
+  KC_GRV,  KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC, \
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH,    KC_DLR,     KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,  \
+  _______, KC_WH_U, KC_BTN3, KC_BTN2,    KC_BTN1,    NEW_TAB, KC_DQUO, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE, \
+  _______, KC_WH_D, KC_ENT,  C(S(KC_C)), C(S(KC_V)), KC_DEL,  KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
+  _______, _______, _______, _______,    _______,    _______, _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT  \
 ),
 
 /* Raise
@@ -228,6 +229,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case ESC_COLON: // output escape key then ":" for vim
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_ESC) ":");
+            }
+            return false;
+            break;
+        case NEW_TAB: // open new browser tab with mouse
+            if (record->event.pressed) {
+                SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LSFT) SS_DELAY(50) SS_TAP(X_BTN1) SS_DELAY(50) SS_UP(X_LSFT) SS_UP(X_LCTL));
             }
     }
     return true;
