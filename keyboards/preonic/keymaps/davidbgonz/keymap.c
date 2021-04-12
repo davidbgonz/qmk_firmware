@@ -19,16 +19,17 @@
  * Double-tap tab for shift tab
  */
 
-
-
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
+#ifdef AUDIO_ENABLE
+    #include "audio.h"
+    #include "song_list.h"
+#endif
+
 enum preonic_layers {
   _QWERTY,
-//  _COLEMAK,
   _COLEMAK_DH,
-//  _DVORAK,
   _LOWER,
   _RAISE,
   _FUNCTION,
@@ -37,9 +38,7 @@ enum preonic_layers {
 
 enum preonic_keycodes {
   QWERTY = SAFE_RANGE,
-//  COLEMAK,
   COLEMAK_DH,
-//  DVORAK,
   LOWER,
   RAISE,
   FUNCTION,
@@ -69,29 +68,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   FUNCTION, KC_CAPS,      KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP,           KC_RGHT    \
 ),
 
-/* Colemak
- * ,-----------------------------------------------------------------------------------.
- * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Ctrl |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |Sh/En |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|LSft/Z|   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |RSft//|  "   |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | Caps | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- */
-/*
-[_COLEMAK] = LAYOUT_preonic_grid( \
-  KC_ESC,   KC_1,         KC_2,    KC_3,    KC_4,  KC_5,   KC_6,   KC_7,  KC_8,    KC_9,    KC_0,            KC_BSPC,   \
-  KC_TAB,   KC_Q,         KC_W,    KC_F,    KC_P,  KC_G,   KC_J,   KC_L,  KC_U,    KC_Y,    KC_SCLN,         KC_DEL,    \
-  KC_LCTL,  KC_A,         KC_R,    KC_S,    KC_T,  KC_D,   KC_H,   KC_N,  KC_E,    KC_I,    KC_O,            KC_SFTENT, \
-  KC_LSFT,  LSFT_T(KC_Z), KC_X,    KC_C,    KC_V,  KC_B,   KC_K,   KC_M,  KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), KC_QUOT,   \
-  FUNCTION, KC_CAPS,      KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP,           KC_RGHT    \
-),
-*/
-
 /* Colemak DH
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
@@ -113,34 +89,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   FUNCTION, KC_CAPS,      KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP,           KC_RGHT    \
 ),
 
-/* Dvorak
- * ,-----------------------------------------------------------------------------------.
- * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  |   "  |   ,  |   .  |   P  |   Y  |   F  |   G  |   C  |   R  |   L  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Ctrl |   A  |   O  |   E  |   U  |   I  |   D  |   H  |   T  |   N  |   S  |Sh/En |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|LSft/;|   Q  |   J  |   K  |   X  |   B  |   M  |   W  |   V  |RSft/Z|  /   |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | Caps | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- */
-/*
-[_DVORAK] = LAYOUT_preonic_grid( \
-  KC_ESC,   KC_1,            KC_2,    KC_3,    KC_4,  KC_5,   KC_6,   KC_7,  KC_8,    KC_9,    KC_0,         KC_BSPC,   \
-  KC_TAB,   KC_QUOT,         KC_COMM, KC_DOT,  KC_P,  KC_Y,   KC_F,   KC_G,  KC_C,    KC_R,    KC_L,         KC_DEL,    \
-  KC_LCTL,  KC_A,            KC_O,    KC_E,    KC_U,  KC_I,   KC_D,   KC_H,  KC_T,    KC_N,    KC_S,         KC_SFTENT, \
-  KC_LSFT,  LSFT_T(KC_SCLN), KC_Q,    KC_J,    KC_K,  KC_X,   KC_B,   KC_M,  KC_W,    KC_V,    RSFT_T(KC_Z), KC_SLSH,   \
-  FUNCTION, KC_CAPS,         KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP,        KC_RGHT    \
-),
-*/
-
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  | F10  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
+ * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Trns | WhUp |MseMid|MseRt |MseLft|Enter |   "  |   -  |   =  |   [  |   ]  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -153,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC, \
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH,    KC_DLR,     KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,  \
   _______, KC_WH_U, KC_BTN3, KC_BTN2,    KC_BTN1,    KC_ENT,  KC_DQUO, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE, \
-  _______, KC_WH_D, KC_BSPC, C(S(KC_C)), C(S(KC_V)), KC_DEL , KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
+  _______, KC_WH_D, KC_BSPC, C(S(KC_C)), C(S(KC_V)), KC_DEL,  KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
   _______, _______, _______, _______,    _______,    _______, _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT  \
 ),
 
@@ -161,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |Meta 1|Meta 2|Meta 3|Meta 4|Meta 5|Meta 6|Meta 7|Meta 8|Meta 9|Meta 0| Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   `  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Trns |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  | Left | Down |  Up  |Right |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -172,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT_preonic_grid( \
   KC_TILD, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), KC_BSPC, \
-  KC_GRV,  KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_DEL,  \
+  KC_GRV,  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_DEL,  \
   _______, KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_BSLS, \
   _______, KC_F8,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     KC_RSFT, \
   _______, _______,    _______,    _______,    _______,    _______,    _______,    _______,    QWERTY,     COLEMAK_DH, AU_ON,      AU_OFF   \
@@ -220,8 +173,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, MUV_DE,     MUV_IN,  MU_MOD,  MU_TOG   \
 )
 
-
 };
+
+
+#ifdef AUDIO_ENABLE
+    float tone_caps_on[][2]   = SONG(CAPS_LOCK_ON_SOUND);
+    float tone_caps_off[][2]  = SONG(CAPS_LOCK_OFF_SOUND);
+    float tone_numlk_on[][2]  = SONG(NUM_LOCK_ON_SOUND);
+    float tone_numlk_off[][2] = SONG(NUM_LOCK_OFF_SOUND);
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -231,24 +191,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-//        case COLEMAK:
-//            if (record->event.pressed) {
-//                set_single_persistent_default_layer(_COLEMAK);
-//            }
-//            return false;
-//            break;
         case COLEMAK_DH:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_COLEMAK_DH);
             }
             return false;
             break;
-//        case DVORAK:
-//            if (record->event.pressed) {
-//                set_single_persistent_default_layer(_DVORAK);
-//            }
-//            return false;
-//            break;
         case LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
@@ -281,7 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_ESC) ":");
             }
-        }
+    }
     return true;
 };
 
@@ -366,3 +314,22 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
+
+void led_set_user(uint8_t usb_led) {
+    static uint8_t old_usb_led = 0;
+
+    if (!is_playing_notes()) {
+        if ((usb_led & (1<<USB_LED_CAPS_LOCK)) && !(old_usb_led & (1<<USB_LED_CAPS_LOCK))) {
+            PLAY_SONG(tone_caps_on);
+        } else if (!(usb_led & (1<<USB_LED_CAPS_LOCK)) && (old_usb_led & (1<<USB_LED_CAPS_LOCK))) {
+            PLAY_SONG(tone_caps_off);
+        } else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+            PLAY_SONG(tone_numlk_on);
+        } else if (!(usb_led & (1<<USB_LED_NUM_LOCK)) && (old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+            PLAY_SONG(tone_numlk_off);
+        }
+    }
+
+    old_usb_led = usb_led;
+}
+
