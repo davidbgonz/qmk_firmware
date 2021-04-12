@@ -95,19 +95,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Trns | WhUp |MseMid|MseRt |MseLft|Enter |   "  |   -  |   =  |   [  |   ]  |  |   |
+ * | Trns | WhUp |MseMid|MseRt |MseLft|CSMsLf|   "  |   -  |   =  |   [  |   ]  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Trns | WhDn | Bksp |CtlShC|CtlShV| Del  |   '  |   _  |   +  |   {  |   }  | Shift|
+ * | Trns | WhDn |Enter |CtlShC|CtlShV| Del  |   '  |   _  |   +  |   {  |   }  | Shift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Trns | Trns | Trns | Trns | Trns |    Trns     | Trns | Play | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC, \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH,    KC_DLR,     KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,  \
-  _______, KC_WH_U, KC_BTN3, KC_BTN2,    KC_BTN1,    KC_ENT,  KC_DQUO, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE, \
-  _______, KC_WH_D, KC_BSPC, C(S(KC_C)), C(S(KC_V)), KC_DEL,  KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
-  _______, _______, _______, _______,    _______,    _______, _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT  \
+  KC_GRV,  KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC, \
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH,    KC_DLR,     KC_PERC,       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,  \
+  _______, KC_WH_U, KC_BTN3, KC_BTN2,    KC_BTN1,    C(S(KC_BTN1)), KC_DQUO, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_PIPE, \
+  _______, KC_WH_D, KC_ENT,  C(S(KC_C)), C(S(KC_V)), KC_DEL,        KC_QUOT, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_RSFT, \
+  _______, _______, _______, _______,    _______,    _______,       _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT  \
 ),
 
 /* Raise
