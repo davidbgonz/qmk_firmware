@@ -331,10 +331,10 @@ void led_set_user(uint8_t usb_led) {
             PLAY_SONG(tone_caps_on);
         } else if (!(usb_led & (1<<USB_LED_CAPS_LOCK)) && (old_usb_led & (1<<USB_LED_CAPS_LOCK))) {
             PLAY_SONG(tone_caps_off);
-        //} else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK))) {
-        //    PLAY_SONG(tone_numlk_on);
-        //} else if (!(usb_led & (1<<USB_LED_NUM_LOCK)) && (old_usb_led & (1<<USB_LED_NUM_LOCK))) {
-        //    PLAY_SONG(tone_numlk_off);
+        } else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+            PLAY_SONG(tone_numlk_on);
+        } else if (!(usb_led & (1<<USB_LED_NUM_LOCK)) && (old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+            PLAY_SONG(tone_numlk_off);
         }
     }
 
