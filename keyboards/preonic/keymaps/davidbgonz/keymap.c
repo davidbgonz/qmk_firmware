@@ -180,8 +180,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
     float tone_caps_on[][2]   = SONG(CAPS_LOCK_ON_SOUND);
     float tone_caps_off[][2]  = SONG(CAPS_LOCK_OFF_SOUND);
-    //float tone_numlk_on[][2]  = SONG(NUM_LOCK_ON_SOUND);
-    //float tone_numlk_off[][2] = SONG(NUM_LOCK_OFF_SOUND);
+    float tone_numlk_on[][2]  = SONG(NUM_LOCK_ON_SOUND);
+    float tone_numlk_off[][2] = SONG(NUM_LOCK_OFF_SOUND);
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -330,10 +330,10 @@ void led_set_user(uint8_t usb_led) {
             PLAY_SONG(tone_caps_on);
         } else if (!(usb_led & (1<<USB_LED_CAPS_LOCK)) && (old_usb_led & (1<<USB_LED_CAPS_LOCK))) {
             PLAY_SONG(tone_caps_off);
-        } else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK))) {
-            PLAY_SONG(tone_numlk_on);
-        } else if (!(usb_led & (1<<USB_LED_NUM_LOCK)) && (old_usb_led & (1<<USB_LED_NUM_LOCK))) {
-            PLAY_SONG(tone_numlk_off);
+        //} else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+        //    PLAY_SONG(tone_numlk_on);
+        //} else if (!(usb_led & (1<<USB_LED_NUM_LOCK)) && (old_usb_led & (1<<USB_LED_NUM_LOCK))) {
+        //    PLAY_SONG(tone_numlk_off);
         }
     }
 
