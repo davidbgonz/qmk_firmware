@@ -180,8 +180,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
     float tone_caps_on[][2]   = SONG(CAPS_LOCK_ON_SOUND);
     float tone_caps_off[][2]  = SONG(CAPS_LOCK_OFF_SOUND);
-    float tone_numlk_on[][2]  = SONG(NUM_LOCK_ON_SOUND);
-    float tone_numlk_off[][2] = SONG(NUM_LOCK_OFF_SOUND);
+    //float tone_numlk_on[][2]  = SONG(NUM_LOCK_ON_SOUND);
+    //float tone_numlk_off[][2] = SONG(NUM_LOCK_OFF_SOUND);
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
